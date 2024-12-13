@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PV_Examen02Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="spConsultarPersonaPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPersona" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spConsultarTodasLasPersonas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spConsultarTodasLasProvincias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spCrearPersona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idProvincia" Type="int" Mode="In" />
+          <Parameter Name="nombreCompleto" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="fechaNacimiento" Type="datetime" Mode="In" />
+          <Parameter Name="salario" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="spEditarPersona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPersona" Type="int" Mode="In" />
+          <Parameter Name="idProvincia" Type="int" Mode="In" />
+          <Parameter Name="nombreCompleto" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="fechaNacimiento" Type="datetime" Mode="In" />
+          <Parameter Name="salario" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="spEliminarPersona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPersona" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="PV_Examen02ModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PV_Examen02Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PV_Examen02Entities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="spConsultarPersonaPorId" ReturnType="Collection(PV_Examen02Model.spConsultarPersonaPorId_Result)">
+            <Parameter Name="idPersona" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spConsultarTodasLasPersonas" ReturnType="Collection(PV_Examen02Model.spConsultarTodasLasPersonas_Result)" />
+          <FunctionImport Name="spConsultarTodasLasProvincias" ReturnType="Collection(PV_Examen02Model.spConsultarTodasLasProvincias_Result)" />
+          <FunctionImport Name="spCrearPersona">
+            <Parameter Name="idProvincia" Mode="In" Type="Int32" />
+            <Parameter Name="nombreCompleto" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="fechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="salario" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="spEditarPersona">
+            <Parameter Name="idPersona" Mode="In" Type="Int32" />
+            <Parameter Name="idProvincia" Mode="In" Type="Int32" />
+            <Parameter Name="nombreCompleto" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="fechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="salario" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="spEliminarPersona">
+            <Parameter Name="idPersona" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spConsultarPersonaPorId_Result">
+          <Property Type="Int32" Name="idPersona" Nullable="false" />
+          <Property Type="Int32" Name="idProvincia" Nullable="false" />
+          <Property Type="String" Name="nombreCompleto" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="telefono" Nullable="false" MaxLength="9" />
+          <Property Type="DateTime" Name="fechaNacimiento" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="salario" Nullable="false" Precision="10" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="spConsultarTodasLasPersonas_Result">
+          <Property Type="Int32" Name="idPersona" Nullable="false" />
+          <Property Type="Int32" Name="idProvincia" Nullable="false" />
+          <Property Type="String" Name="nombreProvincia" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="nombreCompleto" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="telefono" Nullable="false" MaxLength="9" />
+          <Property Type="DateTime" Name="fechaNacimiento" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="salario" Nullable="false" Precision="10" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="spConsultarTodasLasProvincias_Result">
+          <Property Type="Int32" Name="idProvincia" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="25" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PV_Examen02ModelStoreContainer" CdmEntityContainer="PV_Examen02Entities" >
+          <FunctionImportMapping FunctionImportName="spConsultarPersonaPorId" FunctionName="PV_Examen02Model.Store.spConsultarPersonaPorId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PV_Examen02Model.spConsultarPersonaPorId_Result">
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+                <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spConsultarTodasLasPersonas" FunctionName="PV_Examen02Model.Store.spConsultarTodasLasPersonas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PV_Examen02Model.spConsultarTodasLasPersonas_Result">
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+                <ScalarProperty Name="nombreProvincia" ColumnName="nombreProvincia" />
+                <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spConsultarTodasLasProvincias" FunctionName="PV_Examen02Model.Store.spConsultarTodasLasProvincias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PV_Examen02Model.spConsultarTodasLasProvincias_Result">
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spCrearPersona" FunctionName="PV_Examen02Model.Store.spCrearPersona" />
+          <FunctionImportMapping FunctionImportName="spEditarPersona" FunctionName="PV_Examen02Model.Store.spEditarPersona" />
+          <FunctionImportMapping FunctionImportName="spEliminarPersona" FunctionName="PV_Examen02Model.Store.spEliminarPersona" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
